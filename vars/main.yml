@@ -1,0 +1,6 @@
+---
+# vars file for templaterole
+#
+pkgname: apache2
+service: apache2
+

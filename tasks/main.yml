@@ -1,0 +1,22 @@
+---
+# tasks file for templaterole
+#
+- name: Install {{pkgname}}
+  package:
+    name: "{{pkgname}}"
+    state: present
+- name: Change listening port to 8081
+  lineinfile:
+    path: /etc/apache2/ports.conf
+    regexp: '^Listen'
+    line: Listen 8081
+  notify:
+    restart apache2
+- name: Configure {{servic}} service
+  template:
+    src: index.j2
+    dest: /var/www/html/index.html
+  notify:
+    restart apache2
+
+
